@@ -1,0 +1,21 @@
+{
+  "name": "botclean",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
+    "puppeteer-v18": "npm:puppeteer@18.2.1",
+    "puppeteer-v24": "npm:puppeteer@24.10.0",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.30.0"
+  }
+}
