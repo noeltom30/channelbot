@@ -33,7 +33,7 @@ client.on('qr', qr => {
 client.on('message', async message => {
     console.log(message.body);
     let reply = "";
-    if (message.from === target) {
+    if (message.from === target && message.body.split("\n".length) >= 4) {
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
@@ -50,7 +50,7 @@ client.on('message', async message => {
                 else {
                     let status = await getRes(jsonRes[0]);
                     if (!status.error) {
-                        reply = status.status;
+                        reply = status.name + " - " - status.status;
                     }
                     else
                         throw new Error("Failed to submit lead: #2 ")

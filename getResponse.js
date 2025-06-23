@@ -112,7 +112,7 @@ const getRes = async (name) => {
 
             const lead = await targetPage.waitForSelector('tr:nth-of-type(1) > td:nth-of-type(4) > span');
             let value = await page.evaluate(el => el.innerText, lead)
-            return {status: value};
+            return {status: value, name: name};
 
         }
     }
