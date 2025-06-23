@@ -1,5 +1,8 @@
+
 const inputParser = (message) => {
+    message = message.replace(/\u00A0+/g, '');
     const lines = message.trim().split("\n")
+
     let fields = [];
     let result = {};
     const staffList = [
@@ -20,7 +23,22 @@ const inputParser = (message) => {
     })
 
     console.log(fields);
+    let fieldnames = ['Name', 'Phone number', 'Project', 'Employee'];
+    const numberFields = new Set([
+        "number",
+        "mobile number",
+        "mobile no.",
+        "client number",
+        "client no",
+        "customer number",
+        "customer no",
+        "contact no",
+        "contact number"
 
+    ]);
+    const empidFields = new Set([
+
+    ]);
     for (const field of fields) {
 
         field[1] = field[1].trim();
@@ -30,19 +48,20 @@ const inputParser = (message) => {
         if (field[0] === 'client' || field[0] === 'client name') {
             result[0] = field[1];
         }
-        if (field[0] === 'number' || field[0] === "mobile number" || field[0] === "mobile no." || field[0] === "client number") {
-            field[1] = field[1].replaceAll(" ",'')//fixes space between number
-            console.log(field[1])
-            if (field[1].length != 10 && !field[1].includes("+91"))
-
-                return { error: "Invalid phone number" };
-            else {
-                result[1] = field[1].slice(-10);
+        for (const num of numberFields) {
+            if (field[0] === num) {
+                field[1] = field[1].replaceAll(" ", '')//fixes space between number
+                // if(field.contains(+))
+                if (field[1].length != 10 && !field[1].includes("+91"))
+                    return { error: "Invalid phone number" };
+                else {
+                    result[1] = field[1].slice(-10);
+                }
             }
         }
         if (field[0] === 'project') {
             field[1] = field[1].toLowerCase();
-            if(field[1] === 'sobha townpark')
+            if (field[1] === 'sobha townpark' || field[1] === 'town park')
                 field[1] = 'Townpark';
             result[2] = field[1];
         }
@@ -55,16 +74,24 @@ const inputParser = (message) => {
                     result[3] = staff[1];
             })
         }
+
+    }
+    for (let i = 0; i < 4; i++) {
+        if (!fields[i]) {
+            let errorMessage = "Error submitting: missing " + fieldnames[i] + " details"
+            return { error: errorMessage };
+        }
     }
     return result;
 
 }
 
 if (require.main == module) {
-    let result = inputParser(`Client name- Kevin 
-Client number- 99160 37193
-Project- Sobha Townpark 
-STM- Deva Sagar
+    let result = inputParser(`Client name: Manju
+Contact no: 7204194972
+Project: Sobha Galera
+STM name :Vicky
+Emp ID: 28355
 `)
     console.log(result);
 }

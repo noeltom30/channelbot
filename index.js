@@ -30,7 +30,7 @@ client.on('qr', qr => {
     qrcode.generate(qr, { small: true });
 });
 
-client.on('message', async message => {
+client.on('message_create', async message => {
     console.log(message.body);
     let reply = "";
     if (message.from === target && message.body.split("\n".length) >= 4) {
