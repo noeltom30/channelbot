@@ -22,7 +22,7 @@ const inputParser = (message) => {
         fields.push(line.split(/[:\-]/))
     })
 
-    console.log(fields);
+    // console.log(fields);
     let fieldnames = ['Name', 'Phone number', 'Project', 'Employee'];
     const numberFields = new Set([
         "number",
@@ -77,7 +77,7 @@ const inputParser = (message) => {
 
     }
     for (let i = 0; i < 4; i++) {
-        if (!fields[i]) {
+        if (!result[i]) {
             let errorMessage = "Error submitting: missing " + fieldnames[i] + " details"
             return { error: errorMessage };
         }

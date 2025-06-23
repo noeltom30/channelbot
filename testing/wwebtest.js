@@ -33,7 +33,7 @@ client.on('qr', qr => {
 client.on('message', async message => {
     console.log(message.body);
     let reply = "";
-    if (message.from === target){
+    if (message.from === target && message.body.split("\n").length >= 4) {
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
@@ -43,7 +43,7 @@ client.on('message', async message => {
         else {
             let runresult;
             try {
-                runresult = await runPuppy(jsonRes[0], jsonRes[1], jsonRes[2], jsonRes[3]);
+                // runresult = await runPuppy(jsonRes[0], jsonRes[1], jsonRes[2], jsonRes[3]);
                 runresult = "hi";
                 if (runresult.error) {
                     throw new Error("Failed to submit lead: #1")
@@ -51,7 +51,7 @@ client.on('message', async message => {
                 else {
                     let status = await getRes(jsonRes[0]);
                     if (!status.error) {
-                        reply = status.name + " - " + status.status;
+                        reply = status.name + " - " - status.status;
                     }
                     else
                         throw new Error("Failed to submit lead: #2 ")
