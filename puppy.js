@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer-v24'); // v23.0.0 or laternpm
 require('dotenv').config()
-async function runPuppy(clientName = "joel", mobileNumber = "9037738663", project = "Townpark", stm = "Rinita Davis") {
+async function runPuppy(clientName, mobileNumber, project , stm) {
     let browser;
     try {
         browser = await puppeteer.launch({ headless: false});
