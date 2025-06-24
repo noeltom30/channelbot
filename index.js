@@ -12,6 +12,7 @@ const client = new Client({
 });
 
 let target = "120363417311359596@g.us";
+let target2 = "-1";
 client.on('ready', async () => {
     console.log('Client is ready!');
     if (target === "-1") {
@@ -24,6 +25,16 @@ client.on('ready', async () => {
         else
             console.log('Not found');
     }
+    if (target2 === "-1") {
+        console.log('Searching for group');
+        const chats = await client.getChats();
+        const group = chats.find(chat => chat.isGroup && chat.name === 'Bottest2')
+        target2 = group.id._serialized;
+        if (group)
+            console.log(`Group ID: ${target2}`)
+        else
+            console.log('Not found');
+    }
 });
 
 client.on('qr', qr => {
@@ -33,7 +44,7 @@ client.on('qr', qr => {
 client.on('message', async message => {
     console.log(message.body);
     let reply = "";
-    if (message.from === target){
+    if (message.from === target || message.from === target2){
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
