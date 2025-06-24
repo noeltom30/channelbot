@@ -19,7 +19,7 @@ const inputParser = (message) => {
 
 
     lines.forEach(line => {
-        if(line.trim().length() != 0)
+        if(line.trim().length != 0)
         fields.push(line.split(/[:\-]/))
     })
 

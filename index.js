@@ -38,13 +38,14 @@ client.on('message', async message => {
         console.log(jsonRes);
         let reply = "";
         if (jsonRes.error) {
-            reply = jsonRes.error
+            reply = jsonRes.error;
+            let formatMessage = "Please ensure the following format is followed\n Client name: \n Mobile no: \n Project: \n STM:"
+            message.reply(reply+formatMessage);
         }
         else {
             let runresult;
             try {
                 runresult = await runPuppy(jsonRes[0], jsonRes[1], jsonRes[2], jsonRes[3]);
-                runresult = "hi";
                 if (runresult.error) {
                     throw new Error("Failed to submit lead: #1")
                 }
