@@ -19,8 +19,8 @@ const inputParser = (message) => {
 
 
     lines.forEach(line => {
-        if(line.trim().length != 0)
-        fields.push(line.split(/[:\-]/))
+        if (line.trim().length != 0)
+            fields.push(line.split(/[:\-]/))
     })
 
     // console.log(fields);
@@ -41,7 +41,7 @@ const inputParser = (message) => {
 
     ]);
     for (const field of fields) {
-
+        if (typeof field[1] === 'undefined') continue;
         field[1] = field[1].trim();
         field[0] = field[0].trim().toLowerCase();
         if (field[0].length == 0 && field[1].length == 0)
@@ -88,12 +88,7 @@ const inputParser = (message) => {
 }
 
 if (require.main == module) {
-    let result = inputParser(`Client name: Manju
-Contact no: 7204194972
-Project: Sobha Galera
-STM name :Vicky
-Emp ID: 28355
-`)
+    let result = inputParser(`hi`)
     console.log(result);
 }
 

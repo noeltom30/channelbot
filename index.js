@@ -1,4 +1,4 @@
-const { Client, LocalAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth, MessageAck } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const { runPuppy } = require('./puppy.js');
 const { inputParser } = require('./inputParser.js');
@@ -44,7 +44,7 @@ client.on('qr', qr => {
 client.on('message', async message => {
     console.log(message.body);
     let reply = "";
-    if (message.from === target || message.from === target2){
+    if (message.from === target || message.from === target2 && (message.body.includes(':')||message.body.includes('-'))){
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
