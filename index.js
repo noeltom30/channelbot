@@ -58,7 +58,7 @@ client.on('message', async message => {
             try {
                 runresult = await runPuppy(jsonRes[0], jsonRes[1], jsonRes[2], jsonRes[3]);
                 if (runresult.error) {
-                    throw new Error("Failed to submit lead: #1")
+e                   throw new Error("Failed to submit lead: " + jsonRes[0])
                 }
                 else {
                     let status = await getRes(jsonRes[0]);
@@ -66,7 +66,7 @@ client.on('message', async message => {
                         reply = status.name + " - " + status.status;
                     }
                     else
-                        throw new Error("Failed to submit lead: #2 ")
+                        throw new Error("Failed to submit lead: "+ jsonRes[0])
                 }
             } catch (err) {
                 reply = err.message;
