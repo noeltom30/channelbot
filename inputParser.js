@@ -46,7 +46,7 @@ const inputParser = (message) => {
         field[0] = field[0].trim().toLowerCase();
         if (field[0].length == 0 && field[1].length == 0)
             continue;
-        if (field[0] === 'client' || field[0] === 'client name') {
+        if (field[0].includes("client") || field[0].includes("customer")) {
             result[0] = field[1];
         }
         for (const num of numberFields) {
