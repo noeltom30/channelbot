@@ -12,7 +12,7 @@ const client = new Client({
 });
 
 let target = "120363417311359596@g.us";
-let target2 = "-1";
+let target2 = "120363401917441652@g.us";
 client.on('ready', async () => {
     console.log('Client is ready!');
     if (target === "-1") {
@@ -58,7 +58,7 @@ client.on('message', async message => {
             try {
                 runresult = await runPuppy(jsonRes[0], jsonRes[1], jsonRes[2], jsonRes[3]);
                 if (runresult.error) {
-e                   throw new Error("Failed to submit : " + jsonRes[0])
+                   throw new Error("Failed to submit : " + jsonRes[0])
                 }
                 else {
                     let status = await getRes(jsonRes[0]);

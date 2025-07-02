@@ -62,7 +62,7 @@ const inputParser = (message) => {
         }
         if (field[0] === 'project') {
             field[1] = field[1].toLowerCase();
-            if (field[1].includes("town park") || field[i].includes("townpark"))
+            if (field[1].includes("town park") || field[1].includes("townpark"))
                 field[1] = 'Townpark';
             result[2] = field[1];
         }
