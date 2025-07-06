@@ -50,7 +50,7 @@ client.on('message', async message => {
         let reply = "";
         if (jsonRes.error) {
             reply = jsonRes.error;
-            let formatMessage = "Please ensure the following format is followed\n Client name: \n Mobile no: \n Project: \n STM:"
+            let formatMessage = "\nPlease follow the following format\n Client name: \n Mobile no: \n Project: \n STM:"
             message.reply(reply+formatMessage);
         }
         else {

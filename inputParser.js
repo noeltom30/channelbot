@@ -46,11 +46,11 @@ const inputParser = (message) => {
         field[0] = field[0].trim().toLowerCase();
         if (field[0].length == 0 && field[1].length == 0)
             continue;
-        if (field[0].includes("client name") || field[0].includes("customer name") || field[0] === 'client' || field[0] === 'customer') {
+        if (field[0].includes("client name") || field[0].includes("customer name") || field[0] === 'client' || field[0] === 'customer'||field[0] === 'name') {
             result[0] = field[1];
         }
         for (const num of numberFields) {
-            if (field[0] === num || field[0].includes("mobile") || field[0].includes("phone")) {
+            if (field[0] === num || field[0].includes("mobile") || field[0].includes("phone") || field[0].includes("contact")) {
                 field[1] = field[1].replaceAll(" ", '')//fixes space between number
                 // if(field.contains(+))
                 if (field[1].length != 10 && !field[1].includes("+91"))
@@ -62,7 +62,7 @@ const inputParser = (message) => {
         }
         if (field[0] === 'project') {
             field[1] = field[1].toLowerCase();
-            if (field[1].includes("town park") || field[i].includes("townpark"))
+            if (field[1].includes("town park") || field[1].includes("townpark"))
                 field[1] = 'Townpark';
             result[2] = field[1];
         }
@@ -79,7 +79,7 @@ const inputParser = (message) => {
     }
     for (let i = 0; i < 4; i++) {
         if (!result[i]) {
-            let errorMessage = "Error submitting: missing " + fieldnames[i] + " details"
+            let errorMessage = "Error: missing " + fieldnames[i] + " details"
             return { error: errorMessage };
         }
     }
