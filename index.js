@@ -12,7 +12,7 @@ const client = new Client({
 });
 
 let target = "120363417311359596@g.us";
-let target2 = "-1";
+let target2 = "120363401917441652@g.us";
 client.on('ready', async () => {
     console.log('Client is ready!');
     if (target === "-1") {
@@ -42,15 +42,16 @@ client.on('qr', qr => {
 });
 
 client.on('message', async message => {
-    console.log(message.body);
+
     let reply = "";
     if (message.from === target || message.from === target2 && (message.body.includes(':')||message.body.includes('-'))){
+    console.log(message.body);
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
         if (jsonRes.error) {
             reply = jsonRes.error;
-            let formatMessage = "\nPlease follow the following format\n Client name: \n Mobile no: \n Project: \n STM:"
+            let formatMessage = "\nPlease maintain the following format \n Client name: \n Mobile no: \n Project: \n STM:"
             message.reply(reply+formatMessage);
         }
         else {
@@ -66,7 +67,7 @@ client.on('message', async message => {
                         reply = status.name + " - " + status.status;
                     }
                     else
-                        throw new Error("Failed to submit lead: "+ jsonRes[0])
+                        throw new Error("Failed to submit lead: "+ jsonRes[0]+"\n Suggestion: Verify STM Name")
                 }
             } catch (err) {
                 reply = err.message;

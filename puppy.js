@@ -3,9 +3,9 @@ require('dotenv').config()
 async function runPuppy(clientName, mobileNumber, project , stm) {
     let browser;
     try {
-        browser = await puppeteer.launch({ headless: false});
+        browser = await puppeteer.launch({ headless: true});
         const page = await browser.newPage();
-        const timeout = 30000;
+        const timeout = 50000;
         page.setDefaultTimeout(timeout);
 
         {
