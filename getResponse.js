@@ -4,9 +4,9 @@ require('dotenv').config()
 const getRes = async (name) => {
     let browser;
     try {
-        browser = await puppeteer.launch({ headless: false });
+        browser = await puppeteer.launch({ headless: true});
         const page = await browser.newPage();
-        const timeout = 30000;
+        const timeout = 50000;
         page.setDefaultTimeout(timeout);
 
         {

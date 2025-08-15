@@ -42,15 +42,16 @@ client.on('qr', qr => {
 });
 
 client.on('message', async message => {
-    console.log(message.body);
+
     let reply = "";
     if (message.from === target || message.from === target2 && (message.body.includes(':')||message.body.includes('-'))){
+    console.log(message.body);
         let jsonRes = inputParser(message.body);
         console.log(jsonRes);
         let reply = "";
         if (jsonRes.error) {
             reply = jsonRes.error;
-            let formatMessage = "Please ensure the following format is followed\n Client name: \n Mobile no: \n Project: \n STM:"
+            let formatMessage = "\nPlease maintain the following format \n Client name: \n Mobile no: \n Project: \n STM:"
             message.reply(reply+formatMessage);
         }
         else {
@@ -66,7 +67,7 @@ client.on('message', async message => {
                         reply = status.name + " - " + status.status;
                     }
                     else
-                        throw new Error("Failed to submit lead: "+ jsonRes[0])
+                        throw new Error("Failed to submit lead: "+ jsonRes[0]+"\n Suggestion: Verify STM Name")
                 }
             } catch (err) {
                 reply = err.message;
